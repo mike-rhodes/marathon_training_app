@@ -1,0 +1,15 @@
+{
+  "name": "training_app",
+  "version": "0.0.0",
+  "description": "App used to track mileage and diet",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Rhodes",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.9.0",
+    "node-mysql": "^0.4.2"
+  }
+}

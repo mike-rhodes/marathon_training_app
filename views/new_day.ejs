@@ -1,0 +1,127 @@
+<!doctype HTML>
+<header>
+  <title> Enter Data for Today </title>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="content-language" content="en-US"/>
+  <meta name="robots" content="follow"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script src="public/js/jquery-1.11.3.min.js"></script>
+  <!--<script src="public/js/highcharts.js"></script>-->
+  
+  <script>
+    function myFunction(){
+      $("#test").click(function () {
+        $("#test").html("Remove Run");
+      });
+
+      $("#test2").dblclick(function () {
+        $("#something_silly").html("");
+      });
+      
+    }
+    $(document).ready(myFunction);
+  </script>
+
+  <link rel="stylesheet" href="public/css/bootstrap.min.css" media="screen">
+</header>
+
+<body>
+  <div class="col-lg-10 col-lg-offset-1">
+    <div class="container">
+
+      <h1>Enter Data for Today:</h1>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <button class="btn btn-default" id="test">Add Run</button>
+            <button class="btn btn-primary" id="test2">Add Skiing</button>
+            <button class="btn btn-primary">Add Lift</button>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="col-lg-6">
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label>Breakfast:</label>
+            <span>
+              <input type="text" class="form-control" id="breakfast"></input>
+              <select class="form-control" id="breakfast_quantity">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </span>
+          </div>
+          <button type="submit" class="btn btn-default">Add</button>
+        </form>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label>Lunch:</label>
+            <input type="text" class="form-control" id="lunch"></input>
+            <select class="form-control" id="lunch_quantity">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Add</button>
+        </form>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label>Dinner:</label>
+            <input type="text" class="form-control" id="dinner"></input>
+            <select class="form-control" id="dinner_quantity">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Add</button>
+        </form>
+      </div>
+
+      <div class="col-lg-6">
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label>Morning Weight:</label>
+            <input type="text" class="form-control" id="morning_weight"></input>
+            <select class="form-control" id="morning_weight_unit">
+              <option>lbs</option>
+              <option>kgs</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Add</button>
+        </form>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label>Evening Weight:</label>
+            <input type="text" class="form-control" id="evening_weight"></input>
+            <select class="form-control" id="evening_weight_unit">
+              <option>lbs</option>
+              <option>kgs</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Add</button>
+        </form>
+      </div>
+
+    </div>
+    <h2 id="something_silly"></h2>
+    
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  
+</body>
+
+</HTML>

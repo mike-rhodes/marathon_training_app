@@ -1,0 +1,353 @@
+<!doctype HTML>
+
+<header>
+  <title>Training App!</title>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="content-language" content="en-US"/>
+  <meta name="robots" content="follow"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script src="public/js/jquery-1.11.3.min.js"></script>
+  <script src="public/js/highcharts.js"></script>
+
+  <link rel="stylesheet" href="public/css/bootstrap.min.css" media="screen">
+</header>
+
+<body>
+  <div class="col-lg-12">
+    <h1>Training App!</h1>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="input-group">
+            <button class="btn btn-default" type="button"> New Running Activity </button>
+            <button class="btn btn-default" type="button"> New Skiing Activity </button>
+            <button class="btn btn-default" type="button"> New Lifting Activity </button>
+            <button class="btn btn-info" type="button"> New Meal </button>
+            <button class="btn btn-info" type="button"> New Weight </button>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    <div class="col-lg-12">
+      <h2>Running Log</h2>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Planned Distance</th>
+            <th>Actual Distance</th>
+            <th>Duration</th>
+            <th>Temp</th>
+            <th>Temp Feels Like</th>
+            <th>Humidity</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09/15/2015</td>
+            <td>3 miles</td>
+            <td>3 miles</td>
+            <td>00:29:31</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Nothing to report here!</td>
+          </tr>
+          <tr>
+            <td>09/14/2015</td>
+            <td>0 miles</td>
+            <td>0 miles</td>
+            <td>00:00:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Nothing to report here!</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="col-lg-12">
+      <h2>Skiing Log</h2>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Planned Distance</th>
+            <th>Actual Distance</th>
+            <th>Duration</th>
+            <th>Temp</th>
+            <th>Temp Feels Like</th>
+            <th>Humidity</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09/15/2015</td>
+            <td>Kettle Moraine, WI</td>
+            <td>3 miles</td>
+            <td>3 miles</td>
+            <td>00:29:31</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Was really cold out.</td>
+          </tr>
+          <tr>
+            <td>09/14/2015</td>
+            <td>Houghton, MI</td>
+            <td>3 miles</td>
+            <td>3 miles</td>
+            <td>00:29:31</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Was really cold out.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="col-lg-12">
+      <h2>Lifting Log</h2>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Activity</th>
+            <th>Weight</th>
+            <th>Reps</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09/15/2015</td>
+            <td>Bench Press</td>
+            <td>135lbs</td>
+            <td>10 reps</td>
+          </tr>
+          <tr>
+            <td>09/15/2015</td>
+            <td>Bench Press</td>
+            <td>155lbs</td>
+            <td>8 reps</td>
+            <td>Felt good</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="col-lg-12">
+      <h2>Nutrition Log</h2>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Dinner</th>
+            <th>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09/15/2015</td>
+            <td>3 Eggs</td>
+            <td>Lots of Candy</td>
+            <td>More candy</td>
+            <td>A keg of beer</td>
+          </tr>
+          <tr>
+            <td>09/14/2015</td>
+            <td>2 Eggs</td>
+            <td>1 PB and J</td>
+            <td>1 Chicken Breast 8oz</td>
+            <td>5 16oz Pabst Blue Ribbon Beers</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-12">
+      <h2>Weight Log</h2>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Morning Weight</th>
+            <th>Evening Weight</th>
+            <th>Pre-Run Weight</th>
+            <th>Post-Run Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09/15/2015</td>
+            <td>206.8</td>
+            <td>204.4</td>
+            <td>205.0</td>
+            <td>203.8</td>
+          </tr>
+          <tr>
+            <td>09/14/2015</td>
+            <td>206.0</td>
+            <td>209.0</td>
+            <td>NULL</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--<div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Enter something..."></input>
+          <span class="input-group-btn">
+              <button class="btn btn-default" type="button"> Go </button>
+          </span>
+        </div>
+      </div>
+    </div>-->
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+  $(function () {
+    $(document).ready(function () {
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+
+        $('#container').highcharts({
+            chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                events: {
+                    load: function () {
+
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = Math.random();
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+                    }
+                }
+            },
+            title: {
+                text: 'Live random data'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'Random data',
+                data: (function () {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: Math.random()
+                        });
+                    }
+                    return data;
+                }())
+            }]
+        });
+    });
+});
+  
+  </script>
+</body>
+
+</HTML>
