@@ -1,15 +1,32 @@
 {
-  "name": "training_app",
-  "version": "0.0.0",
+  "name": "marathon_training_app",
+  "version": "0.0.1",
   "description": "App used to track mileage and diet",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Mike Rhodes",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
     "mysql": "^2.9.0",
-    "node-mysql": "^0.4.2"
-  }
+    "path": "^0.12.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike-rhodes/marathon_training_app.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "marathon",
+    "training"
+  ],
+  "bugs": {
+    "url": "https://github.com/mike-rhodes/marathon_training_app/issues"
+  },
+  "homepage": "https://github.com/mike-rhodes/marathon_training_app"
 }
