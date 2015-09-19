@@ -12,11 +12,13 @@
   <script src="public/js/jquery-1.11.3.min.js"></script>
   <script src="public/js/highcharts.js"></script>
 
+  <link rel="icon" type="image/png" href="public/img/favicon.png">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="public/css/bootstrap.min.css" media="screen">
 </header>
 
 <body>
-  <div class="col-lg-12">
+  <div class="col-lg-10 col-lg-offset-1">
     <h1>Training App!</h1>
 
     <hr>
@@ -25,21 +27,26 @@
       <div class="col-lg-12">
         <div class="input-group">
             <button class="btn btn-default" type="button"> New Running Activity </button>
-            <button class="btn btn-default" type="button"> New Skiing Activity </button>
-            <button class="btn btn-default" type="button"> New Lifting Activity </button>
+            <button class="btn btn-default" type="button"> New Weight </button>
+            <button class="btn btn-info" type="button"> New Skiing Activity </button>
+            <button class="btn btn-info" type="button"> New Lifting Activity </button>
             <button class="btn btn-info" type="button"> New Meal </button>
-            <button class="btn btn-info" type="button"> New Weight </button>
         </div>
       </div>
     </div>
 
     <hr>
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div class="col-lg-6">
+      <div id="run_distance" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <div class="col-lg-6">
+      <div id="weight_tracker" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </div>
 
     <div class="col-lg-12">
       <h2>Running Log</h2>
-      <table class="table table-condensed">
+      <table class="table table-condensed table-striped">
         <thead>
           <tr>
             <th>Date</th>
@@ -53,33 +60,46 @@
           </tr>
         </thead>
         <tbody>
+          <% for (var i = 0; i < actual_run_data.actual_data.length; i++) { %>
+            <tr>
+              <td> <%= actual_run_data.actual_data[i][0] %> </td>
+              <td> </td>
+              <td> <%= actual_run_data.actual_data[i][1] %> </td>
+              <td> <%= actual_run_data.duration[i] %> </td>
+              <td> <%= actual_run_data.temp[i] %> </td>
+              <td> <%= actual_run_data.feels_like[i] %> </td>
+              <td> <%= actual_run_data.humidity[i] %> </td>
+              <td></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="col-lg-12">
+      <h2>Weight Log</h2>
+      <table class="table table-condensed table-striped">
+        <thead>
           <tr>
-            <td>09/15/2015</td>
-            <td>3 miles</td>
-            <td>3 miles</td>
-            <td>00:29:31</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Nothing to report here!</td>
+            <th>Date</th>
+            <th>Morning Weight</th>
+            <th>Evening Weight</th>
+            <th>Pre-Run Weight</th>
+            <th>Post-Run Weight</th>
           </tr>
-          <tr>
-            <td>09/14/2015</td>
-            <td>0 miles</td>
-            <td>0 miles</td>
-            <td>00:00:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Nothing to report here!</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+        </thead>
+        <tbody>
+          <% for (var wt = 0; wt < weight_data.date_only.length; wt++) { %>
+            <tr>
+              <td> <%= weight_data.date_only[wt] %> </td>
+              <td> <%= weight_data.morning_weight_only[wt] %> </td>
+              <td> <%= weight_data.evening_weight_only[wt] %> </td>
+              <td>205.0</td>
+              <td>203.8</td>
+            </tr>
+          <% } %>
         </tbody>
       </table>
     </div>
@@ -217,136 +237,121 @@
       </table>
     </div>
 
-    <div class="col-lg-12">
-      <h2>Weight Log</h2>
-      <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Morning Weight</th>
-            <th>Evening Weight</th>
-            <th>Pre-Run Weight</th>
-            <th>Post-Run Weight</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>09/15/2015</td>
-            <td>206.8</td>
-            <td>204.4</td>
-            <td>205.0</td>
-            <td>203.8</td>
-          </tr>
-          <tr>
-            <td>09/14/2015</td>
-            <td>206.0</td>
-            <td>209.0</td>
-            <td>NULL</td>
-            <td>NULL</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!--<div class="row">
-      <div class="col-lg-6">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Enter something..."></input>
-          <span class="input-group-btn">
-              <button class="btn btn-default" type="button"> Go </button>
-          </span>
-        </div>
-      </div>
-    </div>-->
   </div>
+
+  <% include ./partials/footer.ejs %>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
   $(function () {
-    $(document).ready(function () {
-        Highcharts.setOptions({
-            global: {
-                useUTC: false
-            }
-        });
+      $(document).ready(function () {
 
-        $('#container').highcharts({
-            chart: {
-                type: 'spline',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function () {
+        // var x = {{running_data.planned_data}};
+        var planned_dist_data = <%- JSON.stringify( running_data.planned_data ); %>
+        var actual_dist_data = <%- JSON.stringify( actual_run_data.actual_data ); %>
+        var morning_weight = <%- JSON.stringify( weight_data.morning_weight ); %>
+        var evening_weight = <%- JSON.stringify( weight_data.evening_weight ); %>
+        
+          Highcharts.setOptions({
+              global: {
+                  useUTC: false
+              }
+          });
 
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = Math.random();
-                            series.addPoint([x, y], true, true);
-                        }, 1000);
-                    }
+          $('#run_distance').highcharts({
+              chart: {
+                  type: 'line'
+              },
+              title: {
+                  text: '<%= running_data.title %>'
+              },
+              xAxis: {
+            type: 'category',
+            labels: {
+                      rotation: -45
                 }
-            },
-            title: {
-                text: 'Live random data'
-            },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                    text: '<%= running_data.yAxisTitle %>'
+                  },
+                  plotLines: [{
+                      value: 0,
+                      width: 1,
+                      color: '#808080'
+                  }]
+              },
+              legend: {
+                  enabled: false
+              },
+              exporting: {
+                  enabled: false
+              },
+              series: [{
+                  name: '<%= running_data.seriesName %>',
+                  data: planned_dist_data,
+                  dataGrouping: {
+                        enabled: true
+                    }
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                        Highcharts.numberFormat(this.y, 2);
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            series: [{
-                name: 'Random data',
-                data: (function () {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
+                {
+                  name: '<%= actual_run_data.seriesName %>',
+                  data: actual_dist_data,
+                  dataGrouping: {
+                        enabled: true
                     }
-                    return data;
-                }())
-            }]
+                }]
+            });
+
+            $('#weight_tracker').highcharts({
+              chart: {
+                  type: 'line'
+              },
+              title: {
+                  text: '<%= weight_data.title %>'
+              },
+              xAxis: {
+            type: 'category',
+            labels: {
+                      rotation: -45
+                }
+              },
+              yAxis: {
+                  title: {
+                    min: 0,
+                      text: '<%= weight_data.yAxisTitle %>'
+                  },
+                  plotLines: [{
+                      value: 0,
+                      width: 1,
+                      color: '#808080'
+                  }]
+              },
+              legend: {
+                  enabled: false
+              },
+              exporting: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'Morning Weight',
+                  data: morning_weight,
+                  dataGrouping: {
+                        enabled: true
+                    }
+                },
+                {
+                  name: 'Evening Weight',
+                  data: evening_weight,
+                  dataGrouping: {
+                        enabled: true
+                    }
+                }]
+            });
         });
-    });
-});
-  
+    })
   </script>
 </body>
 
