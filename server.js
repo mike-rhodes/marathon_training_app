@@ -3,6 +3,7 @@ var mysql = require('mysql');
 var path = require('path');
 var moment = require('moment');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 8888;
 
@@ -14,19 +15,26 @@ var connection = mysql.createConnection({
 	database: 'training_app'
 });
 
+/* Connect to the MySQL database */
 connection.connect();
 
+/* Application settings */
 app.use('/', express.static(__dirname));
+app.use(bodyParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 /* Middleware */
 function get_weight (req, res, next) {
-	connection.query('SELECT UNIX_TIMESTAMP(weight_date) AS weight_date, weight_morning, weight_evening FROM weight_tracker', function(err, rows, fields) {
+
+	/* Call the SQL query which is stored in separate file */
+	var weight_sql = fs.readFileSync('middleware/sql/get_weight.sql').toString();
+
+	connection.query(weight_sql, function(err, rows, fields) {
 		if (!err) {
 			var weight_data = new Object();
 			weight_data.title = 'My Weight Data';
-		    weight_data.yAxisTitle = 'Weight (lbs)';
+		   	weight_data.yAxisTitle = 'Weight (lbs)';
 		    weight_data.xAxisTitle = 'Date';
 			weight_data.seriesName = 'Daily Weight';
 			weight_data.date_only = [];
@@ -65,12 +73,16 @@ function get_weight (req, res, next) {
 }
 
 function get_planned_distance (req, res, next) {
-	connection.query('SELECT UNIX_TIMESTAMP(planned_run_date) AS planned_run_date, planned_run_distance FROM planned_runs', function (err, rows, fields) {
+	
+	/* Call the SQL query which is stored in separate file */
+	var planned_runs_sql = fs.readFileSync('middleware/sql/get_planned_runs.sql').toString();
+
+	connection.query(planned_runs_sql, function (err, rows, fields) {
 		if (!err) {
 			var run_data = new Object();
 			run_data.title = 'My Running Data';
-		    run_data.yAxisTitle = 'Distance (miles)';
-		    run_data.xAxisTitle = 'Date';
+	    	run_data.yAxisTitle = 'Distance (miles)';
+	    	run_data.xAxisTitle = 'Date';
 			run_data.seriesName = 'Planned Mileage';
 			run_data.planned_data = [];
 			run_data.dates = [];
@@ -98,14 +110,15 @@ function get_planned_distance (req, res, next) {
 }
 
 function get_actual_distance (req, res, next) {
+	/* Call the SQL query which is stored in separate file */
 	var actual_runs_sql = fs.readFileSync('middleware/sql/get_actual_runs.sql').toString();
 
 	connection.query(actual_runs_sql, function (err, rows, fields) {
 		if (!err) {
 			var actual_run_data = new Object();
 			actual_run_data.title = 'My Running Data';
-		    actual_run_data.yAxisTitle = 'Distance (miles)';
-		    actual_run_data.xAxisTitle = 'Date';
+		   	actual_run_data.yAxisTitle = 'Distance (miles)';
+	    	actual_run_data.xAxisTitle = 'Date';
 			actual_run_data.seriesName = 'Actual Mileage';
 			actual_run_data.actual_data = [];
 			actual_run_data.dates = [];
@@ -150,13 +163,19 @@ function render_index (req, res) {
 }
 
 /* Define Routes */
-
 app.get('/', get_weight, get_planned_distance, get_actual_distance, render_index);
 
 app.get('/new_day', function(req, res){
   res.render('new_day.ejs');
 });
 
+app.post('/new_day', function(req,res) {
+	var weight_date = req.body.weight_date;
+	var morning_weight = req.body.morning_weight;
+	console.log(weight_date + ' | ' + morning_weight);
+
+	res.redirect('/new_day');
+});
 
 app.listen(port);
 console.log('Site running on ' + port);

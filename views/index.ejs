@@ -1,4 +1,5 @@
 <!doctype HTML>
+<html lang="en">
 
 <header>
   <title>Training App!</title>
@@ -9,10 +10,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <script src="public/js/jquery-1.11.3.min.js"></script>
-  <script src="public/js/highcharts.js"></script>
-
   <link rel="icon" type="image/png" href="public/img/favicon.png">
+
+  <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="public/js/highcharts.js"></script>
+  
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="public/css/bootstrap.min.css" media="screen">
 </header>
@@ -26,7 +28,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="input-group">
-            <button class="btn btn-default" type="button"> New Running Activity </button>
+            <a href="/new_day" class="btn btn-default" role="button">New Running Activity</a>
             <button class="btn btn-default" type="button"> New Weight </button>
             <button class="btn btn-info" type="button"> New Skiing Activity </button>
             <button class="btn btn-info" type="button"> New Lifting Activity </button>
@@ -355,4 +357,4 @@
   </script>
 </body>
 
-</HTML>
+</html>
